@@ -78,8 +78,23 @@ class LaserStreamer:
         
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(xs, zs, ts)
+    ax.scatter(xs, ts, zs)
     ax.set_xlabel('X')
-    ax.set_ylabel('Z')
-    ax.set_zlabel('Time')
+    ax.set_ylabel('Time')
+    ax.set_zlabel('Z')
     plt.show()
+    
+  def clear_data(self):
+    """Clears the data"""
+    self.data = []
+    print("Data cleared.")
+    
+  def get_last_scan(self):
+    """Returns the last scan"""
+    return self.last_profile
+    
+def stop_signal(laser_streamer, stop_time=5):
+  """Sends stop signal to end stream data"""
+  
+  time.sleep(stop_time)
+  laser_streamer.stop_stream()
