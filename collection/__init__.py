@@ -1,2 +1,2 @@
-from getData import *
-from laserstreamer import *
+# from .getData import * # Deprecated use laserstreamer instead
+from .laserstreamer import *

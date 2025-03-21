@@ -1,7 +1,10 @@
+import sys
+sys.path.append(r"C:\Program Files\Baumer\API")
+
 import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from oxapi import ox
+from .oxapi import ox
 
 class LaserStreamer:
   
@@ -34,6 +37,7 @@ class LaserStreamer:
     """
     
     print("Streaming data...")  
+    self.start_stream()
     while not self.stop_flag:
       if self.stream.GetProfileCount() > 0:
         profile = self.stream.ReadProfile()
@@ -48,9 +52,11 @@ class LaserStreamer:
         })
         
         self.last_profile = profile
+        time.sleep(0.1)
       else:
         time.sleep(0.01) # Skip if no profile
     
+    self.stop_stream()
     return self.data
   
   def current_profile(self):
