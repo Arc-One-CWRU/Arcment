@@ -1,6 +1,6 @@
 from typing import List
 from collections import defaultdict
-from PreProcessors import *
+from .preprocessors import *
 
 class PreProcessor():
   
@@ -79,7 +79,3 @@ class PreProcessor():
     parser = LayerParser()
     layers = parser.process(self.gcode_sections[Sections.GCODE_MOVEMENTS_SECTION])
     return layers
-
-if __name__ == '__main__':
-  PreProcessor("test.gcode")
-    

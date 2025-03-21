@@ -1,2 +1,2 @@
-from layer_parser import *
-from processor_interface import *
+from .layer_parser import *
+from .processor_interface import *

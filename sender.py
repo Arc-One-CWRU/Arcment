@@ -2,6 +2,7 @@ import requests
 import time
 from duetwebapi import DuetWebAPI
 from processors import *
+
 class Sender:
     def __init__(self):
         self.duet_ip = "169.254.1.2"
@@ -44,8 +45,3 @@ class Sender:
     def get_current_position(self):
         return self.printer.get_model(key="move.axes[].machinePosition")
     
-if __name__ == "__main__":
-    sender = Sender("test2.gcode")
-    
-    for layer in sender.layers:
-        sender.send_layer(layer)
