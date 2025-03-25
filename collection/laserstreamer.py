@@ -55,6 +55,7 @@ class LaserStreamer:
         time.sleep(0.1)
       else:
         time.sleep(0.01) # Skip if no profile
+      self.stream.ClearProfileQueue() # Clear profile queue after reading
     
     self.stop_stream()
     return self.data
