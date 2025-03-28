@@ -63,16 +63,23 @@ class PostProcessor:
             return []
             
         # Create scan path - simple rectangular path over the bounding box
+        # scan_commands = [
+        #     f"; Scan path for layer {layer_index}",
+        #     f"G0 F1000 Z{z + self.z_safety_offset}",  # Move up for safety
+        #     f"G0 X{min_x - 2} Y{min_y - 2}",  # Move to start corner with margin
+        #     f"G0 Z{z + 2}",  # Move down to scanning height
+        #     f"G1 X{max_x + 2} Y{min_y - 2} F{self.scan_speed}",  # Scan first edge
+        #     f"G1 X{max_x + 2} Y{max_y + 2}",  # Scan second edge
+        #     f"G1 X{min_x - 2} Y{max_y + 2}",  # Scan third edge
+        #     f"G1 X{min_x - 2} Y{min_y - 2}",  # Complete the rectangle
+        #     f"G0 Z{z + self.z_safety_offset}"  # Move up for safety
+        # ]
+        
         scan_commands = [
-            f"; Scan path for layer {layer_index}",
-            f"G0 F1000 Z{z + self.z_safety_offset}",  # Move up for safety
-            f"G0 X{min_x - 2} Y{min_y - 2}",  # Move to start corner with margin
-            f"G0 Z{z + 2}",  # Move down to scanning height
-            f"G1 X{max_x + 2} Y{min_y - 2} F{self.scan_speed}",  # Scan first edge
-            f"G1 X{max_x + 2} Y{max_y + 2}",  # Scan second edge
-            f"G1 X{min_x - 2} Y{max_y + 2}",  # Scan third edge
-            f"G1 X{min_x - 2} Y{min_y - 2}",  # Complete the rectangle
-            f"G0 Z{z + self.z_safety_offset}"  # Move up for safety
+            f"G1 Z{z + 200}",
+            f"G1 Y{min_y - 100}",
+            f"G1 Y{max_y + 100}",
+            f"G1 Z{z - 200}"
         ]
         
         return scan_commands
